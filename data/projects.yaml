@@ -1,0 +1,7 @@
+list:
+- name: Rancher Cron
+  url: https://github.com/socialengine/rancher-cron/
+  desc: Long time ago, rancher had no ability to trigger workloads on a schedule. This project provided that functionality
+- name: docker nginx SPA
+  url: https://github.com/SocialEngine/docker-nginx-spa
+  desc: A Nginx container that sets up a service to serve a single page application, taking care of the routing.

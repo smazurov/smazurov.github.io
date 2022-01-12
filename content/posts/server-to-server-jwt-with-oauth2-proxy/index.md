@@ -73,7 +73,7 @@ Last thing you will need to do is have a valid JWT token, which requires using t
     echo "${bearer_id_token}"
   }
 
-  main(){
+  main() {
     # TODO: Replace the following variables: 
     SERVICE_ACCOUNT_KEY="path-to-service-account.json"
     IAM_CLIENT_ID="<your client id>.apps.googleusercontent.com"
@@ -86,6 +86,6 @@ Last thing you will need to do is have a valid JWT token, which requires using t
 
   main "$@"
 ```
-While `get_token` looks complicated, its not. You can read more about it [here](https://developers.google.com/identity/protocols/oauth2/service-account#authorizingrequests). Key details are the `client_email` which must match allowed email address and `target_audience` which must match the client id in OAuth2 Proxy.
+While `get_token` looks complicated, its not. All its doing is a valid jwt token request and you can read more about it [here](https://developers.google.com/identity/protocols/oauth2/service-account#authorizingrequests). Key details are the `client_email` which must match allowed email address and `target_audience` which must match the client id in OAuth2 Proxy.
 
 And thats it! Now, in addition to secure, short lived access for your users, you can have service accounts exchange their credentials for a valid JWT token. 

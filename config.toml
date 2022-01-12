@@ -1,6 +1,6 @@
-baseURL = "https://mazurov.dev/"
+baseURL = "https://www.mazurov.dev/"
 languageCode = "en-us"
-title = "mazurov.dev: Stepan's bag of holdings"
+title = "Stepan's bag of holdings"
 theme = "cactus"
 enableGitInfo = true
 
@@ -11,7 +11,7 @@ url = "/"
 weight = 1
 
 [[menu.main]]
-name = "Writings"
+name = "Posts"
 url = "/posts"
 weight = 2
 
@@ -51,6 +51,7 @@ weight = 3
   # Home page settings
   description = "I am a software engineer that loves solving complicated problems. Once in a while I solve a problem I want to document, so I'll do that here."
   mainSection = "posts" # your main section
+  mainSectionTitle = "Blog"
   showAllPostsOnHomePage = false
   postsOnHomePage = 5 # this option will be ignored if showAllPostsOnHomePage is set to true
   tagsOverview = false # show tags overview by default.

@@ -25,6 +25,10 @@ weight = 3
 # url = "/about"
 # weight = 4
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [markup]
   [markup.tableOfContents]
     endLevel = 4

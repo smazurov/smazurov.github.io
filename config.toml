@@ -1,7 +1,7 @@
 baseURL = "https://www.mazurov.dev/"
 languageCode = "en-us"
 title = "Musings of an AI Wrangler"
-theme = "cactus"
+theme = "PaperMod"
 enableGitInfo = true
 
 # Main menu which appears below site header.
@@ -11,14 +11,19 @@ url = "/"
 weight = 1
 
 [[menu.main]]
-name = "Posts"
-url = "/posts"
+name = "Archive"
+url = "/archive"
 weight = 2
 
 [[menu.main]]
 name = "Tags"
 url = "/tags"
 weight = 3
+
+[[menu.main]]
+name = "Projects"
+url = "/projects"
+weight = 4
 
 # [[menu.main]]
 # name = "About"
@@ -46,50 +51,58 @@ weight = 3
     tabWidth = 4
 
 [params]
+  # Theme settings
+  defaultTheme = "dark"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = false
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  ShowToc = true
+  TocOpen = false
 
-  colortheme = "dark" # dark, light, white, or classic
-  rss = true # generate rss feed. default value is false
-  googleAnalyticsAsync = true # use asynchronous tracking. Synchronous tracking by default
-  showAllPostsArchive = false # default
+  # Profile mode with posts
+  [params.profileMode]
+    enabled = true
+    title = "Stepan Mazurov"
+    subtitle = "I am a software engineer that loves solving complicated problems. Once in a while I solve a problem I want to document, so I'll do that here."
+    imageUrl = "https://www.gravatar.com/avatar/7c2c1a70f201e1aa98343eb44781016a?s=200"
+    imageWidth = 150
+    imageHeight = 150
+    imageTitle = "Stepan Mazurov"
+    
+    [[params.profileMode.buttons]]
+      name = "Archive"
+      url = "/archive"
+    [[params.profileMode.buttons]]
+      name = "Tags"
+      url = "/tags"
+    [[params.profileMode.buttons]]
+      name = "Projects"
+      url = "/projects"
 
-  # Home page settings
-  description = "I am a software engineer that loves solving complicated problems. Once in a while I solve a problem I want to document, so I'll do that here."
-  mainSection = "posts" # your main section
-  mainSectionTitle = "Blog"
-  showAllPostsOnHomePage = false
-  postsOnHomePage = 5 # this option will be ignored if showAllPostsOnHomePage is set to true
-  tagsOverview = false # show tags overview by default.
-  showProjectsList = true # show projects list by default (if projects data file exists).
-  projectsUrl = "https://github.com/smazurov" # title link for projects list
+  # Show recent posts on homepage
+  mainSections = ["posts"]
 
-  # https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference
-  dateFormat = "2006-01-02" # default
-
-  # Post page settings
-  show_updated = true # default
-  showReadTime = true # default
-  gravatar = "smazurov@gmail.com"
-
-  [params.comments]
-    enabled = false
-    engine = "cactus_comments" # only disqus, utterances, and cactus_comments is supported
-    [params.comments.utterances]
-      repo = "<github_username>/<github_reponame>"
-      label = "hugo-site-name" # you can use however you want to label your name in your repo's issues
-      theme = "github-light"
-    [params.comments.cactuscomments]
-      siteName = "your_cactus_comments_sitename" # see https://cactus.chat/ on how to register your site name
-      #serverUrl = "" # Defaults to https://matrix.cactus.chat:8448 (Cactus Chat public server)
-      #serverName = "" # Defaults to cactus.chat
-
-  # the value of name should be an valid font awesome icon name (brands type)
-  # https://fontawesome.com/icons?d=gallery&s=brands
-  [[params.social]]
+  # Social Icons
+  [[params.socialIcons]]
     name = "github"
-    link = "https://github.com/smazurov"
-  [[params.social]]
+    url = "https://github.com/smazurov"
+  [[params.socialIcons]]
     name = "linkedin"
-    link = "https://www.linkedin.com/in/smazurov/"
-  [[params.social]]
+    url = "https://www.linkedin.com/in/smazurov/"
+  [[params.socialIcons]]
+    name = "bluesky"
+    url = "https://bsky.app/profile/mazurov.dev"
+  [[params.socialIcons]]
     name = "email"
-    link = "smazurov@gmail.com"  # no need for "mailto:" in the head
+    url = "mailto:smazurov@gmail.com"

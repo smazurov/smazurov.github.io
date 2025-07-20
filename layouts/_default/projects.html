@@ -1,0 +1,59 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Params.summary }}
+  <div class="post-description">{{ .Params.summary }}</div>
+  {{- end }}
+</header>
+
+<div class="post-content">
+  {{- if .Content }}
+  <div>{{ .Content }}</div>
+  {{- end }}
+  
+  {{- if .Site.Data.projects }}
+  <div class="projects-list">
+    {{- range .Site.Data.projects.list }}
+    <div class="project-item">
+      <h3><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></h3>
+      <p>{{ .desc }}</p>
+    </div>
+    {{- end }}
+  </div>
+  {{- end }}
+</div>
+
+<style>
+.projects-list {
+  margin-top: 2rem;
+}
+
+.project-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--entry);
+}
+
+.project-item h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.project-item h3 a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.project-item h3 a:hover {
+  text-decoration: underline;
+}
+
+.project-item p {
+  margin: 0;
+  color: var(--secondary);
+}
+</style>
+
+{{- end }}

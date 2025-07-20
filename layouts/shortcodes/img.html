@@ -1,0 +1,20 @@
+{{ $imagePath := printf "images/%s%s" .Page.File.Dir (.Get 0) }}
+{{ $image := resources.Get $imagePath }}
+{{ $size := .Get 1 | default "600x" }}
+{{ $alt := .Get 2 }}
+{{ $rotation := .Get 3 | default "" }}
+{{ $filename := .Get 0 }}
+{{ with $image }}
+  {{ if eq $size "original" }}
+    <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy">
+  {{ else }}
+    {{ $isPNG := strings.HasSuffix (lower $filename) ".png" }}
+    {{ $format := cond $isPNG "png lanczos" "webp q95" }}
+    {{ $resizeString := printf "%s %s" $size $format }}
+    {{ if $rotation }}
+      {{ $resizeString = printf "%s r%s %s" $size $rotation $format }}
+    {{ end }}
+    {{ $processed := .Resize $resizeString }}
+    <img src="{{ $processed.RelPermalink }}" alt="{{ $alt }}" loading="lazy">
+  {{ end }}
+{{ end }}

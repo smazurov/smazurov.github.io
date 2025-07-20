@@ -1,6 +1,6 @@
 baseURL = "https://www.mazurov.dev/"
 languageCode = "en-us"
-title = "Stepan's bag of holdings"
+title = "Musings of an AI Wrangler"
 theme = "cactus"
 enableGitInfo = true
 

@@ -9,6 +9,8 @@ tags:
 - google iam
 ---
 
+{{< img "secured-with-oauth2-proxy.png" "400x" "OAuth2 Proxy login interface with Google authentication" >}}
+
 At [Quantum Metric](https://quantummetric.com), we use very popular, and fantastic
 [oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy). Since QM is a Google shop,
 using Google OAuth2 Clients for authentication of our internal services makes a whole lot of sense.

@@ -15,10 +15,10 @@ name = "Archive"
 url = "/archive"
 weight = 2
 
-[[menu.main]]
-name = "Tags"
-url = "/tags"
-weight = 3
+# [[menu.main]]
+# name = "Tags"
+# url = "/tags"
+# weight = 3
 
 [[menu.main]]
 name = "Projects"
@@ -31,78 +31,68 @@ weight = 4
 # weight = 4
 
 [caches]
-  [caches.images]
-    dir = ':cacheDir/images'
+[caches.images]
+dir = ':cacheDir/images'
 
 [markup]
-  [markup.tableOfContents]
-    endLevel = 4
-    ordered = false
-    startLevel = 2
-  [markup.highlight]
-    codeFences = true
-    guessSyntax = false
-    hl_Lines = ""
-    lineNoStart = 1
-    lineNos = true
-    lineNumbersInTable = false
-    noClasses = true
-    style = "dracula"
-    tabWidth = 4
+[markup.tableOfContents]
+endLevel = 4
+ordered = false
+startLevel = 2
+[markup.highlight]
+codeFences = true
+guessSyntax = false
+hl_Lines = ""
+lineNoStart = 1
+lineNos = true
+lineNumbersInTable = false
+noClasses = true
+style = "dracula"
+tabWidth = 4
 
 [params]
-  # Theme settings
-  defaultTheme = "dark"
-  disableThemeToggle = false
-  ShowReadingTime = true
-  ShowShareButtons = true
-  ShowPostNavLinks = false
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowWordCount = true
-  ShowRssButtonInSectionTermList = true
-  UseHugoToc = true
-  disableSpecial1stPost = false
-  disableScrollToTop = false
-  comments = false
-  hidemeta = false
-  hideSummary = false
-  ShowToc = true
-  TocOpen = false
+# Theme settings
+defaultTheme = "dark"
+disableThemeToggle = false
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = false
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowWordCount = true
+ShowRssButtonInSectionTermList = true
+UseHugoToc = true
+disableSpecial1stPost = false
+disableScrollToTop = false
+comments = false
+hidemeta = false
+hideSummary = false
+ShowToc = true
+TocOpen = false
 
-  # Profile mode with posts
-  [params.profileMode]
-    enabled = true
-    title = "Stepan Mazurov"
-    subtitle = "I am a software engineer that loves solving complicated problems. Once in a while I solve a problem I want to document, so I'll do that here."
-    imageUrl = "https://www.gravatar.com/avatar/7c2c1a70f201e1aa98343eb44781016a?s=200"
-    imageWidth = 150
-    imageHeight = 150
-    imageTitle = "Stepan Mazurov"
-    
-    [[params.profileMode.buttons]]
-      name = "Archive"
-      url = "/archive"
-    [[params.profileMode.buttons]]
-      name = "Tags"
-      url = "/tags"
-    [[params.profileMode.buttons]]
-      name = "Projects"
-      url = "/projects"
+# Profile mode with posts
+[params.profileMode]
+enabled = true
+title = "Stepan Mazurov"
+subtitle = "I am a software engineer that loves solving complicated problems. Once in a while I solve a problem I want to document, so I'll do that here."
+imageUrl = "https://www.gravatar.com/avatar/7c2c1a70f201e1aa98343eb44781016a?s=200"
+imageWidth = 150
+imageHeight = 150
+imageTitle = "Stepan Mazurov"
 
-  # Show recent posts on homepage
-  mainSections = ["posts"]
+# Show recent posts on homepage
+mainSections = ["posts"]
 
-  # Social Icons
-  [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/smazurov"
-  [[params.socialIcons]]
-    name = "linkedin"
-    url = "https://www.linkedin.com/in/smazurov/"
-  [[params.socialIcons]]
-    name = "bluesky"
-    url = "https://bsky.app/profile/mazurov.dev"
-  [[params.socialIcons]]
-    name = "email"
-    url = "mailto:smazurov@gmail.com"
+# Social Icons
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/smazurov"
+[[params.socialIcons]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/smazurov/"
+[[params.socialIcons]]
+name = "bluesky"
+url = "https://bsky.app/profile/mazurov.dev"
+[[params.socialIcons]]
+name = "email"
+url = "mailto:smazurov@gmail.com"

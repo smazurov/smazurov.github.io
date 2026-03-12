@@ -19,7 +19,7 @@ cover:
   relative: true
 ---
 
-If you run OpenWrt as a dumb access point, you've probably noticed that LuCI's **Network > Wireless > Associated Stations** page shows `?` for every client hostname. This is because the AP doesn't run a DHCP server -- another device (your router) handles that -- so `/tmp/dhcp.leases` is empty and LuCI has nothing to look up.
+If you run OpenWrt as a dumb access point, you've probably noticed that LuCI's **Network > Wireless > Associated Stations** page shows `?` for every client hostname. This is because the AP doesn't run a DHCP server - another device (your router) handles that - so `/tmp/dhcp.leases` is empty and LuCI has nothing to look up.
 
 The hostnames are right there, though. DHCP packets from clients flow through the AP's bridge, and they contain the hostname in Option 12. We just need to capture them.
 
@@ -27,7 +27,7 @@ The hostnames are right there, though. DHCP packets from clients flow through th
 
 LuCI resolves hostnames for wireless clients via `rpcd-mod-luci`, which reads `/tmp/dhcp.leases`. On a full router running dnsmasq as the DHCP server, this file is populated automatically. On a dumb AP with DHCP disabled, it's always empty.
 
-The clients *are* sending their hostnames -- every DHCP Discover and Request includes [Option 12 (Hostname)][1]. The packets transit the AP's bridge (`br-lan`) on their way to the router. We can sniff them with `tcpdump` and write the results to the lease file ourselves.
+The clients *are* sending their hostnames - every DHCP Discover and Request includes [Option 12 (Hostname)][1]. The packets transit the AP's bridge (`br-lan`) on their way to the router. We can sniff them with `tcpdump` and write the results to the lease file ourselves.
 
 ## Verifying the Data is There
 
@@ -53,8 +53,8 @@ If `Hostname (12)` appears, you're good.
 
 The DHCP exchange between a client and server looks like this:
 
-1. **Client Request** -- contains the hostname (Option 12), MAC address, and sometimes a requested IP
-2. **Server ACK** -- contains the granted IP (`Your-IP`), actual lease time (`Lease-Time`), and the client's MAC
+1. **Client Request** - contains the hostname (Option 12), MAC address, and sometimes a requested IP
+2. **Server ACK** - contains the granted IP (`Your-IP`), actual lease time (`Lease-Time`), and the client's MAC
 
 Both packets pass through `br-lan`. The script correlates them: it stores the hostname from the Request, then when the ACK arrives for the same MAC, it grabs the actual lease time and IP, and writes a complete lease entry.
 
@@ -185,11 +185,11 @@ done < "$FIFO"
 
 A few things worth noting:
 
-- **FIFO instead of a pipe** -- the `while read` loop must run in the main shell process, not a subshell, so that the `trap` handler works and [procd can actually stop the service][2]. A pipe (`tcpdump | while read`) creates a subshell that never receives SIGTERM.
-- **Shell parameter expansion** -- `${line##* }` and `${line%%\"*}` instead of spawning `awk` or `sed` for each line. On a resource-constrained AP, avoiding subprocesses in the hot loop matters.
-- **`eval` for hostname storage** -- busybox ash has no associative arrays. We store hostnames keyed by sanitized MAC (`aa:bb:cc:dd:ee:ff` becomes `aa_bb_cc_dd_ee_ff`) using `eval`. It's ugly but it works.
-- **Atomic writes** -- `mktemp` + `mv` prevents partial reads if LuCI queries the lease file mid-write.
-- **Expired entry cleanup** -- the `awk` command that removes the old entry for the current MAC also drops any entries past their expiry timestamp.
+- **FIFO instead of a pipe** - the `while read` loop must run in the main shell process, not a subshell, so that the `trap` handler works and [procd can actually stop the service][2]. A pipe (`tcpdump | while read`) creates a subshell that never receives SIGTERM.
+- **Shell parameter expansion** - `${line##* }` and `${line%%\"*}` instead of spawning `awk` or `sed` for each line. On a resource-constrained AP, avoiding subprocesses in the hot loop matters.
+- **`eval` for hostname storage** - busybox ash has no associative arrays. We store hostnames keyed by sanitized MAC (`aa:bb:cc:dd:ee:ff` becomes `aa_bb_cc_dd_ee_ff`) using `eval`. It's ugly but it works.
+- **Atomic writes** - `mktemp` + `mv` prevents partial reads if LuCI queries the lease file mid-write.
+- **Expired entry cleanup** - the `awk` command that removes the old entry for the current MAC also drops any entries past their expiry timestamp.
 
 ## The Lease File Format
 
@@ -205,7 +205,7 @@ For example:
 1773120600 aa:bb:cc:dd:ee:f1 192.168.1.42 my-laptop *
 ```
 
-LuCI's `getDHCPLeases` function reads every entry, computes remaining time as `expiry - now`, and displays it. It does *not* filter out expired entries -- they show as "expired" but remain visible until removed.
+LuCI's `getDHCPLeases` function reads every entry, computes remaining time as `expiry - now`, and displays it. It does *not* filter out expired entries - they show as "expired" but remain visible until removed.
 
 ## Init Script
 
@@ -240,15 +240,15 @@ Hostnames will populate as clients renew their DHCP leases. With a typical 600-s
 
 Three things need to persist across sysupgrade:
 
-**1. The script itself** -- `/usr/sbin/` is not preserved by default:
+**1. The script itself** - `/usr/sbin/` is not preserved by default:
 
 ```bash
 echo /usr/sbin/dhcp-hostname-sniff >> /etc/sysupgrade.conf
 ```
 
-**2. The init script** -- `/etc/init.d/` is under `/etc/`, so it's preserved automatically.
+**2. The init script** - `/etc/init.d/` is under `/etc/`, so it's preserved automatically.
 
-**3. Re-enabling the service and reinstalling tcpdump** -- sysupgrade recreates `/etc/rc.d/` from installed packages, so the symlink that enables our service gets lost. Create a uci-defaults script that runs once on first boot after upgrade:
+**3. Re-enabling the service and reinstalling tcpdump** - sysupgrade recreates `/etc/rc.d/` from installed packages, so the symlink that enables our service gets lost. Create a uci-defaults script that runs once on first boot after upgrade:
 
 ```bash
 cat > /etc/uci-defaults/99-dhcp-hostname-sniff << 'EOF'
@@ -263,9 +263,9 @@ EOF
 
 ## Gotchas
 
-- **Devices that don't send hostnames** -- some devices with privacy features (e.g., Apple's Private Wi-Fi Address) may not include Option 12 at all. There's no fix for this short of static leases on the router.
-- **The AP's own MAC** -- `SELF_MAC` filters out the AP itself if it appears in DHCP traffic. The server's MAC is learned dynamically from the first Reply packet.
-- **Multiple APs** -- each AP runs its own sniffer and only sees traffic from clients connected to it. This is fine -- each AP populates its own lease file for its own LuCI instance.
+- **Devices that don't send hostnames** - some devices with privacy features (e.g., Apple's Private Wi-Fi Address) may not include Option 12 at all. There's no fix for this short of static leases on the router.
+- **The AP's own MAC** - `SELF_MAC` filters out the AP itself if it appears in DHCP traffic. The server's MAC is learned dynamically from the first Reply packet.
+- **Multiple APs** - each AP runs its own sniffer and only sees traffic from clients connected to it. This is fine - each AP populates its own lease file for its own LuCI instance.
 
 [1]: https://www.rfc-editor.org/rfc/rfc2132#section-3.14
 [2]: https://forum.openwrt.org/t/solved-procd-service-doesnt-kill-its-children-processes/29622

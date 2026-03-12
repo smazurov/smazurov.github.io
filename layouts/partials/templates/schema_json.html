@@ -27,6 +27,7 @@
 {{- $bc_list := (split $lang_url "/")}}
 
 {{- $scratch := newScratch }}
+{{- $scratch.Set "itemCount" 0 }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,7 +39,8 @@
     {{- $bc_pg := site.GetPage ($scratch.Get "path") -}}
 
     {{- if (and ($bc_pg) (gt (len . ) 0))}}
-    {{- if (and $index)}}, {{end }}
+    {{- if (gt ($scratch.Get "itemCount") 0) }}, {{end }}
+    {{- $scratch.Add "itemCount" 1 }}
     {
       "@type": "ListItem",
       "position": {{ add 1 $index  }},
@@ -49,7 +51,7 @@
 
   {{- end }}
   {{- /*  self-page addition  */ -}}
-  {{- if (ge (len $bc_list) 2) }}, {{end }}
+  {{- if (gt ($scratch.Get "itemCount") 0) }}, {{end }}
     {
       "@type": "ListItem",
       "position": {{len $bc_list}},

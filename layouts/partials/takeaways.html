@@ -1,0 +1,10 @@
+{{- with .Params.takeaways }}
+<div class="post-takeaways">
+  <h2>Key Takeaways</h2>
+  <ul>
+    {{- range . }}
+    <li>{{ . }}</li>
+    {{- end }}
+  </ul>
+</div>
+{{- end }}

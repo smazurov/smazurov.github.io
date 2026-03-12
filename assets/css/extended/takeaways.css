@@ -1,0 +1,27 @@
+.post-takeaways {
+    margin: 0 2px 40px 2px;
+    border: 1px solid var(--border);
+    background: var(--code-bg);
+    border-radius: var(--radius);
+    padding: 0.8em 1.2em;
+}
+
+.dark .post-takeaways {
+    background: var(--entry);
+}
+
+.post-takeaways h2 {
+    margin: 0 0 0.4em;
+    font-size: 18px;
+}
+
+.post-takeaways ul {
+    margin: 0;
+    padding-inline-start: 20px;
+}
+
+.post-takeaways li {
+    margin-top: 4px;
+    font-size: 15px;
+    color: var(--secondary);
+}

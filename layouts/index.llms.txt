@@ -1,0 +1,9 @@
+# {{ site.Title }}
+
+> {{ site.Params.profileMode.subtitle }}
+
+## Posts
+
+{{ range where site.RegularPages "Section" "posts" -}}
+- [{{ .Title }}]({{ .Permalink }}llms.txt): {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}
+{{ end -}}

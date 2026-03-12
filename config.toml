@@ -99,3 +99,19 @@ url = "mailto:smazurov@gmail.com"
 
 [params.schema]
 publisherType = "Person"
+
+[outputFormats.llms]
+baseName = "llms"
+isPlainText = true
+mediaType = "text/plain"
+rel = "alternate"
+root = true
+
+[outputFormats.llmsmd]
+baseName = "llms"
+isPlainText = true
+mediaType = "text/plain"
+
+[outputs]
+home = ["HTML", "RSS", "llms"]
+page = ["HTML", "llmsmd"]

@@ -1,0 +1,13 @@
+---
+title: {{ .Title }}
+date: {{ .Date.Format "2006-01-02" }}
+url: {{ .Permalink }}
+{{- with .Description }}
+description: {{ . }}
+{{- end }}
+{{- with .Params.tags }}
+tags: {{ delimit . ", " }}
+{{- end }}
+---
+
+{{ .RawContent }}

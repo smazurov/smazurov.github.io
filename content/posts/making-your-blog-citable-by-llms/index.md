@@ -1,6 +1,6 @@
 ---
 title: "Making Your Hugo Blog Citable by LLMs"
-date: 2026-03-12T12:00:00-07:00
+date: 2026-03-12T01:37:42-06:00
 draft: false
 description: "Practical steps to help LLMs accurately cite your blog: llms.txt, Schema.org BlogPosting markup, structured metadata, and problem-first writing. Implemented on a Hugo site with PaperMod."
 tags:

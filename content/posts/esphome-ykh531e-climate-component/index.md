@@ -2,15 +2,26 @@
 title: "ESPHome YK-H/531E Climate Component: IR Control for AC Units"
 date: 2025-07-11T12:00:00-07:00
 draft: false
+description: "Custom ESPHome component for controlling AC units via the YK-H/531E IR remote protocol. Supports temperature control, multiple modes, fan speeds, and swing on ESP32 and ESP8266."
 tags:
   - esphome
   - home-automation
   - climate
   - ir-control
   - iot
+takeaways:
+  - Controls AC units using YK-H/531E IR protocol via ESPHome on ESP32/ESP8266
+  - Supports temperature (16-32°C), 5 modes, 4 fan speeds, and vertical swing
+  - Can pair with ESPHome's thermostat platform for automatic on/off control
+  - Tested on Frigidaire FHPC102AC1 with ESPHome v2025.7.0 through v2026.2.0
+tested_on:
+  - ESPHome v2025.7.0–v2026.2.0
+  - ESP32 dev board
+  - ESP8266-based Athom Tasmota IR Controller
+  - Frigidaire FHPC102AC1
 ---
 
-I recently modernized an existing [custom ESPHome component][2] first develped by [@iverasp][3] for controlling AC units that use the YK-H/531E IR remote control protocol. This component allows you to integrate compatible air conditioners into your home automation system using infrared signals. I have been able to fully test it on ESP32 dev board as well as ESP8266-based Athom Tasmoda IR Controller using latest **ESPHome v2025.7.0**.
+Many AC units ship with IR-only remotes and no smart control interface, making home automation integration difficult. This [custom ESPHome component][1], modernized from [@iverasp][3]'s [original work][2], implements the YK-H/531E IR protocol so an ESP32 or ESP8266 can control compatible air conditioners over infrared.
 
 ## Features
 

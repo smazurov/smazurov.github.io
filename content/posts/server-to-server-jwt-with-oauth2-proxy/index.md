@@ -2,21 +2,23 @@
 title: "Server to Server Authentication with Google Provider in oauth2-proxy"
 date: 2022-01-12T11:51:00-07:00
 draft: false
-tags: 
+description: "How to authenticate server-to-server API calls through oauth2-proxy using Google Service Accounts and JWT token exchange."
+tags:
 - jwt
 - kubernetes
 - auth
 - google iam
+takeaways:
+  - oauth2-proxy with Google provider has no built-in server-to-server auth mechanism
+  - A Google Service Account can exchange credentials for a JWT token that oauth2-proxy accepts
+  - Requires `--oidc-issuer-url=https://accounts.google.com` and `--skip-jwt-bearer-tokens=true`
+tested_on:
+  - oauth2-proxy v7.2.1
 ---
 
 {{< img "secured-with-oauth2-proxy.png" "400x" "OAuth2 Proxy login interface with Google authentication" >}}
 
-At [Quantum Metric](https://quantummetric.com), we use very popular, and fantastic
-[oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy). Since QM is a Google shop,
-using Google OAuth2 Clients for authentication of our internal services makes a whole lot of sense.
-
-One challenge with that, though, is server to server communication. There isn't a simple way to authenticate APIs
-when using Google provider in `oauth2-proxy`. 
+Server-to-server authentication through [oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy) has no obvious solution when using the Google provider. There is no built-in mechanism for API clients to authenticate without a browser-based OAuth2 flow. The workaround: exchange Google Service Account credentials for a JWT token that oauth2-proxy can validate directly. 
 
 ## Overview
 

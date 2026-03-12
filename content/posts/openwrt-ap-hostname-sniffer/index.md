@@ -2,11 +2,17 @@
 title: "Fixing the '?' Hostname Problem on OpenWrt Access Points"
 date: 2026-03-09T22:00:00-07:00
 draft: false
+description: "OpenWrt dumb APs show '?' for client hostnames because /tmp/dhcp.leases is empty. A tcpdump script sniffs DHCP Option 12 from bridge traffic and writes lease entries that LuCI can display."
 tags:
   - openwrt
   - networking
   - home-automation
   - dhcp
+takeaways:
+  - LuCI shows '?' hostnames on dumb APs because /tmp/dhcp.leases is empty without a local DHCP server
+  - A tcpdump script can sniff DHCP Option 12 hostnames from bridge traffic on br-lan
+  - The script writes to the lease file format that rpcd-mod-luci expects, so LuCI displays hostnames normally
+  - A procd init script and uci-defaults hook ensure the solution survives reboots and firmware upgrades
 cover:
   image: before-after.png
   alt: "Before and after: OpenWrt Associated Stations page showing unknown hostnames resolved to device names"

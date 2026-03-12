@@ -50,6 +50,7 @@ noClasses = false
 tabWidth = 4
 
 [params]
+author = "Stepan Mazurov"
 # Theme settings
 defaultTheme = "dark"
 disableThemeToggle = false
@@ -95,3 +96,6 @@ url = "https://bsky.app/profile/mazurov.dev"
 [[params.socialIcons]]
 name = "email"
 url = "mailto:smazurov@gmail.com"
+
+[params.schema]
+publisherType = "Person"

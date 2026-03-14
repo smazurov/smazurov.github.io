@@ -24,10 +24,10 @@
                 {{- end }}
             {{- end }}
             <img draggable="false" src="{{ $img.Permalink }}" alt="{{ .imageTitle | default "profile image" }}" title="{{ .imageTitle }}"
-                height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+                height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" fetchpriority="high" />
         {{- else }}
         <img draggable="false" src="{{ .imageUrl | absURL }}" alt="{{ .imageTitle | default "profile image" }}" title="{{ .imageTitle }}"
-            height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+            height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" fetchpriority="high" />
         {{- end }}
         {{- end }}
         <h1>{{ .title | default site.Title | markdownify }}</h1>
@@ -90,92 +90,3 @@
     </div>
     {{- end }}
 </div>
-
-<style>
-/* Override PaperMod's full-height profile */
-.main .profile {
-    min-height: auto;
-    height: auto;
-    padding: 2rem 0;
-}
-
-.profile .profile_inner {
-    gap: 0.75rem;
-}
-
-.profile_inner h1 {
-    margin: 0.75rem 0 0.5rem 0;
-}
-
-.profile_inner span {
-    margin-bottom: 1rem;
-}
-
-.profile .buttons {
-    margin-top: 1.25rem;
-}
-
-.recent-posts-section {
-    margin-top: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.recent-posts-section h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--primary);
-}
-
-.recent-posts-section .post-entry {
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--entry);
-}
-
-.recent-posts-section .post-entry h3 {
-    margin: 0 0 0.5rem 0;
-}
-
-.recent-posts-section .post-entry h3 a {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.recent-posts-section .post-entry h3 a:hover {
-    text-decoration: underline;
-}
-
-.recent-posts-section .entry-content {
-    margin: 0.5rem 0;
-}
-
-.recent-posts-section .entry-footer {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--secondary);
-}
-
-.view-all-posts {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-
-@media (max-width: 768px) {
-    .profile {
-        padding: 1.5rem 0;
-    }
-    
-    .recent-posts-section {
-        margin-top: 1.5rem;
-    }
-    
-    .recent-posts-section .post-entry {
-        padding: 1rem;
-        margin-bottom: 1rem;
-    }
-}
-</style>

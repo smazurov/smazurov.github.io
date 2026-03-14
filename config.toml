@@ -75,7 +75,7 @@ TocOpen = false
 enabled = true
 title = "Stepan Mazurov"
 subtitle = "I am a software engineer that loves solving complicated problems. Once in a while I solve a problem I want to document, so I'll do that here."
-imageUrl = "https://www.gravatar.com/avatar/7c2c1a70f201e1aa98343eb44781016a?s=200"
+imageUrl = "images/profile.jpg"
 imageWidth = 150
 imageHeight = 150
 imageTitle = "Stepan Mazurov"

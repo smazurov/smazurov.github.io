@@ -248,18 +248,22 @@ echo /usr/sbin/dhcp-hostname-sniff >> /etc/sysupgrade.conf
 
 **2. The init script** - `/etc/init.d/` is under `/etc/`, so it's preserved automatically.
 
-**3. Re-enabling the service and reinstalling tcpdump** - sysupgrade recreates `/etc/rc.d/` from installed packages, so the symlink that enables our service gets lost. Create a uci-defaults script that runs once on first boot after upgrade:
+**3. Re-enabling the service and reinstalling tcpdump** - sysupgrade recreates `/etc/rc.d/` from installed packages, so the symlink that enables our service gets lost. A uci-defaults script seems like the right fix - it runs once on first boot after upgrade - but it races with package initialization. The package manager rebuilds `/etc/rc.d/` *after* uci-defaults has already run and deleted itself, wiping our symlink for good.
+
+`/etc/rc.local` runs after everything else and on every boot, so it won't get stomped. The operations are all idempotent:
 
 ```bash
-cat > /etc/uci-defaults/99-dhcp-hostname-sniff << 'EOF'
-/etc/init.d/dhcp-hostname-sniff enable
-if ! command -v tcpdump >/dev/null 2>&1; then
-    apk add tcpdump-mini
+# Add to /etc/rc.local, before "exit 0":
+if [ -x /etc/init.d/dhcp-hostname-sniff ]; then
+    /etc/init.d/dhcp-hostname-sniff enable 2>/dev/null
+    if ! command -v tcpdump >/dev/null 2>&1; then
+        apk add tcpdump-mini
+    fi
+    /etc/init.d/dhcp-hostname-sniff start 2>/dev/null
 fi
-EOF
 ```
 
-`/etc/uci-defaults/` is under `/etc/`, so it's preserved. Scripts there execute once on first boot and are deleted after successful execution.
+`/etc/rc.local` is under `/etc/`, so it's preserved across sysupgrade.
 
 ## Gotchas
 

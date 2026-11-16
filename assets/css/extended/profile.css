@@ -48,15 +48,18 @@
 
 .recent-posts-section .post-entry h3 {
     margin: 0 0 0.5rem 0;
-}
-
-.recent-posts-section .post-entry h3 a {
     color: var(--primary);
-    text-decoration: none;
 }
 
-.recent-posts-section .post-entry h3 a:hover {
+.recent-posts-section .post-entry:hover h3,
+.recent-posts-section .post-entry:focus-within h3 {
     text-decoration: underline;
+}
+
+.entry-link:focus-visible {
+    border-radius: inherit;
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
 }
 
 .recent-posts-section .entry-content {
